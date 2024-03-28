@@ -98,9 +98,9 @@ resource "aws_iam_role" "k8s-nodegroup" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ec2.amazonaws.com"
+          Service = "eks.amazonaws.com"
         }
-      },
+      }
     ]
   })
 }
