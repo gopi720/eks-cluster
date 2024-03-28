@@ -46,7 +46,7 @@ resource "aws_route_table_association" "airtelcare-rtassoc" {
   subnet_id = aws_subnet.airtelcare-subnet-1.id
   route_table_id = aws_route_table.airtelcare-rt.id 
 }
-resource "aws_route_table_association" "airtelcare-rtassoc" {
+resource "aws_route_table_association" "airtelcare-rtassoc1" {
   subnet_id = aws_subnet.airtelcare-subnet-2.id
   route_table_id = aws_route_table.airtelcare-rt.id
 }
