@@ -48,8 +48,7 @@ pipeline{
             steps{
                script{
                     withCredentials([string(credentialsId: 'accesskey', variable: 'accesskey'), string(credentialsId: 'secretkey', variable: 'secretkey')]) {
-                     sh '
-                      terraform destroy -var accesskey=${accesskey} -var secretkey=${secretkey} -auto-approve '
+                     sh ' terraform destroy -var accesskey=${accesskey} -var secretkey=${secretkey} -auto-approve '
                     }
                 } 
             }
