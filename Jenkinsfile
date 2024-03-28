@@ -39,6 +39,21 @@ pipeline{
                 }
             }  
         }
+        stage("terraform destroy"){
+            when {
+                expression {
+                    params.SELECT == 'destroy' 
+                }
+            }
+            steps{
+               script{
+                    withCredentials([string(credentialsId: 'accesskey', variable: 'accesskey'), string(credentialsId: 'secretkey', variable: 'secretkey')]) {
+                     sh '
+                      terraform destroy -var accesskey=${accesskey} -var secretkey=${secretkey} -auto-approve '
+                    }
+                } 
+            }
+        }
     }
 
 }
