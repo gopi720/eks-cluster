@@ -66,6 +66,7 @@ pipeline{
             } 
             steps{
                 sh '''chmod 600 installations.sh
+                 su -
                  sh installations.sh'''
             }  
         }
