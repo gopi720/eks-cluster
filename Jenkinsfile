@@ -4,6 +4,11 @@ pipeline{
         maven "maven"
         terraform "Terraform"
     }
+    environment{
+       AWS_ACCESS_KEY_ID = credentials("accesskey")
+       AWS_SECRET_ACCESS_KEY = credentials("secretkey")
+       AWS_DEFAULT_REGION = "ap-south-1" 
+    }
     parameters {
         choice(
             name: 'SELECT', // Name of the parameter
@@ -52,6 +57,17 @@ pipeline{
                     }
                 } 
             }
+        }
+        stage("installing-kubectl"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }
+            } 
+            steps{
+                sh '''chmod 600 installations.sh
+                 sh installations.sh'''
+            }  
         }
     }
 
