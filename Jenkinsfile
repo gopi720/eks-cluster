@@ -67,7 +67,7 @@ pipeline{
             } 
             steps{
                 sh '''chmod 600 installations.sh
-                 echo env.my_password | sudo -S su -
+                 echo -n "env.my_password" | sudo -S su -
                  sh installations.sh'''
             }  
         }
