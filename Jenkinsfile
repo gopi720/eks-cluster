@@ -8,7 +8,7 @@ pipeline{
        AWS_ACCESS_KEY_ID = credentials("accesskey")
        AWS_SECRET_ACCESS_KEY = credentials("secretkey")
        AWS_DEFAULT_REGION = "ap-south-1" 
-       my_password = "haritha"
+       my_password = "Haritha"
     }
     parameters {
         choice(
