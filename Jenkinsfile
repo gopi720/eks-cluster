@@ -66,11 +66,8 @@ pipeline{
                 }
             } 
             steps{
-                sh '''chmod 600 installations.sh
-                 echo -n "env.my_password" | sudo -S su -
-                 sh installations.sh'''
+                sh 'aws eks update-kubeconfig --name k8scluster --region ap-south-1'
             }  
         }
     }
-
 }
