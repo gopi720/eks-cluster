@@ -8,6 +8,7 @@ pipeline{
        AWS_ACCESS_KEY_ID = credentials("accesskey")
        AWS_SECRET_ACCESS_KEY = credentials("secretkey")
        AWS_DEFAULT_REGION = "ap-south-1" 
+       my_password = "Welcome1"
     }
     parameters {
         choice(
@@ -66,7 +67,7 @@ pipeline{
             } 
             steps{
                 sh '''chmod 600 installations.sh
-                 sudo su - -p Welcome1
+                 echo env.my_password | sudo -S su -
                  sh installations.sh'''
             }  
         }
