@@ -3,6 +3,7 @@ pipeline{
     tools{
         maven "maven"
         terraform "Terraform"
+        docker "docker"
     }
     environment{
        AWS_ACCESS_KEY_ID = credentials("accesskey")
@@ -26,6 +27,16 @@ pipeline{
             }
             steps{
                 git branch: 'main', url: 'https://github.com/gopi720/eks-cluster.git'
+            }
+        }
+        stage("mvn build"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }
+            }
+            steps{
+                sh 'mvn clean verify'
             }
         }
         stage("terraform"){
@@ -78,6 +89,41 @@ pipeline{
             steps{
                 sh 'kubectl get nodes -o wide'
             } 
+        }
+        stage("docker image build"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }  
+            }
+            steps{
+                sh 'docker image build -t gopidharani/airtelcare2:1.0'
+            }
+        }
+        stage("docker image push"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }  
+            }
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
+                     sh 'docker login -u gopidharani -p ${docker}'      
+                    }
+                  sh 'docker image push gopidharani/airtelcare:1.0'
+                }
+            }    
+        }
+        stage("deployment"){
+           when {
+                expression {
+                    params.SELECT == 'create' 
+                }  
+            } 
+            steps{
+                sh 'kubectl apply -f airtelcarepod.yml'
+            }
         }
     }
 }
