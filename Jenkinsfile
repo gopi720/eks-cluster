@@ -8,6 +8,7 @@ pipeline{
        AWS_ACCESS_KEY_ID = credentials("accesskey")
        AWS_SECRET_ACCESS_KEY = credentials("secretkey")
        AWS_DEFAULT_REGION = "ap-south-1" 
+       my_password = "Haritha"
     }
     parameters {
         choice(
@@ -58,17 +59,25 @@ pipeline{
                 } 
             }
         }
-        stage("installing-kubectl"){
+        stage("updating-kubectl"){
             when {
                 expression {
                     params.SELECT == 'create' 
                 }
             } 
             steps{
-                sh '''chmod 600 installations.sh
-                 sh installations.sh'''
+                sh 'aws eks update-kubeconfig --name k8scluster --region ap-south-1'
             }  
         }
+        stage("kubectl node checking"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }
+            } 
+            steps{
+                sh 'kubectl get nodes -o wide'
+            } 
+        }
     }
-
 }
