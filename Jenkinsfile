@@ -59,7 +59,7 @@ pipeline{
                 } 
             }
         }
-        stage("installing-kubectl"){
+        stage("updating-kubectl"){
             when {
                 expression {
                     params.SELECT == 'create' 
@@ -68,6 +68,16 @@ pipeline{
             steps{
                 sh 'aws eks update-kubeconfig --name k8scluster --region ap-south-1'
             }  
+        }
+        stage("kubectl node checking"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }
+            } 
+            steps{
+                sh 'kubectl get nodes -o wide'
+            } 
         }
     }
 }
