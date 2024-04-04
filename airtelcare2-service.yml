@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: airtelcareservice
+spec:
+  type: NodePort  
+  selector:
+    name: aitrelcare 
+  ports:
+  - protocol: TCP  # Protocol (TCP or UDP)
+    port: 8080 # Port exposed by the container
+    targetPort: 8080 # Target port of the pods
+    

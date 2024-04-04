@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: airtelcare
+  lables: 
+   name: airtelcare
+spec:
+  containers:
+  - name: airtelcare2
+    image: gopidharani/airtelcare2:1.0
+    ports:
+    - containerPort: 8080
