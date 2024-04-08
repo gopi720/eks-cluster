@@ -89,16 +89,6 @@ pipeline{
                 sh 'kubectl get nodes -o wide'
             } 
         }
-        stage("docker image build"){
-            when {
-                expression {
-                    params.SELECT == 'create' 
-                }  
-            }
-            steps{
-                sh 'docker build -t gopidharani/airtelcare:1.0 .'
-            }
-        }
         stage("docker image push"){
             when {
                 expression {
