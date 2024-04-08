@@ -3,7 +3,6 @@ pipeline{
     tools{
         maven "maven"
         terraform "Terraform"
-        docker "docker"
     }
     environment{
        AWS_ACCESS_KEY_ID = credentials("accesskey")
