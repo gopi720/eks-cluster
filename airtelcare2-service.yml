@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort  
   selector:
-    name: aitrelcare 
+    app: aitrelcare 
   ports:
   - protocol: TCP  # Protocol (TCP or UDP)
     port: 8080 # Port exposed by the container
