@@ -96,7 +96,7 @@ pipeline{
                 }  
             }
             steps{
-                sh 'docker image build -t gopidharani/airtelcare2:1.0 .'
+                sh 'docker build -t gopidharani/airtelcare:1.0 .'
             }
         }
         stage("docker image push"){
@@ -110,7 +110,8 @@ pipeline{
                     withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
                      sh 'docker login -u gopidharani -p ${docker}'      
                     }
-                  sh 'docker image push gopidharani/airtelcare:1.0'
+                  sh ''' docker build -t gopidharani/airtelcare:1.0 .
+                   docker image push gopidharani/airtelcare:1.0'''
                 }
             }    
         }
