@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: airtelcare2
-    image: gopidharani/airtelcare2:1.0
+    image: gopidharani/airtelcare2:2.0
     ports:
     - containerPort: 8080
