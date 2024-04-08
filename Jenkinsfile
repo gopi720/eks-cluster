@@ -89,7 +89,7 @@ pipeline{
                 sh 'kubectl get nodes -o wide'
             } 
         }
-        stage("docker image push"){
+        stage("docker image build and push"){
             when {
                 expression {
                     params.SELECT == 'create' 
@@ -100,8 +100,8 @@ pipeline{
                     withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
                      sh 'docker login -u gopidharani -p ${docker}'      
                     }
-                  sh ''' docker build -t gopidharani/airtelcare:1.0 .
-                   docker image push gopidharani/airtelcare:1.0'''
+                  sh ''' docker build -t gopidharani/airtelcare:2.0 .
+                   docker image push gopidharani/airtelcare:2.0'''
                 }
             }    
         }
