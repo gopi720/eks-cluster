@@ -8,5 +8,5 @@ RUN  tar -xzvf  apache-tomcat-9.0.87.tar.gz
 RUN rm -rf apache-tomcat-9.0.87.tar.gz
 COPY target/airtelcare2.war apache-tomcat-9.0.87/webapps
 COPY  run.sh .
-RUN chmod 700 run.sh
+RUN chmod 755 run.sh
 ENTRYPOINT [" ./run.sh "]
