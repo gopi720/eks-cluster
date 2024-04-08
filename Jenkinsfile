@@ -124,7 +124,8 @@ pipeline{
             } 
             steps{
                 sh '''kubectl get pods -o wide 
-                kubectl get services'''
+                kubectl get services
+                kubectl logs airtelcare'''
             }   
         }
     }
