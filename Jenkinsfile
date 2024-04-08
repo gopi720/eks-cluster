@@ -112,8 +112,20 @@ pipeline{
                 }  
             } 
             steps{
-                sh 'kubectl apply -f airtelcarepod.yml'
+                sh '''kubectl apply -f airtelcarepod.yml
+                kubectl apply -f airtelcare2-service.yml'''
             }
+        }
+        stage("getting services"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }  
+            } 
+            steps{
+                sh '''kubectl get pods -o wide 
+                kubectl get services'''
+            }   
         }
     }
 }

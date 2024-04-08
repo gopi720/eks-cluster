@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: airtelcare
   lables: 
-   name: airtelcare
+   app: airtelcare
 spec:
   containers:
   - name: airtelcare2
