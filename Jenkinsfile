@@ -96,7 +96,7 @@ pipeline{
                 }  
             }
             steps{
-                sh 'docker image build -t gopidharani/airtelcare2:1.0'
+                sh 'docker image build -t gopidharani/airtelcare2:1.0 .'
             }
         }
         stage("docker image push"){
