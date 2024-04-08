@@ -1,4 +1,4 @@
-FROM Ubuntu:20.04
+FROM ubuntu:20.04
 RUN mkdir -p u01/anitha
 WORKDIR u01/anitha
 RUN apt update -y
