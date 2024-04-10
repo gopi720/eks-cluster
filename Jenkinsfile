@@ -105,17 +105,6 @@ pipeline{
                 }
             }    
         }
-        stage("clearing environment"){
-            when {
-                expression {
-                    params.SELECT == 'create' 
-                }  
-            } 
-            steps{
-                sh '''kubectl delete -f airtelcarepod.yml
-                kubectl delete -f airtelcare2-service.yml'''
-            }   
-        }
         stage("deployment"){
            when {
                 expression {
