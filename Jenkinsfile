@@ -124,8 +124,17 @@ pipeline{
             } 
             steps{
                 sh '''kubectl get pods -o wide 
-                kubectl get services,
-                kubectl logs airtelcare'''
+                kubectl get services'''
+            }   
+        }
+        stage("checking container logs"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }  
+            } 
+            steps{
+                sh 'kubectl describe pod airtelcare'
             }   
         }
     }
