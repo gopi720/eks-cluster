@@ -137,8 +137,8 @@ resource "aws_eks_node_group" "eks-nodes" {
   subnet_ids = [ aws_subnet.airtelcare-subnet-1.id , aws_subnet.airtelcare-subnet-2.id ]
   instance_types = ["t2.micro"]
   scaling_config {
-    desired_size = 1 
-    max_size = 1 
+    desired_size = 2 
+    max_size = 3 
     min_size = 1 
   }
   depends_on = [ aws_iam_role_policy_attachment.airtelcare-cni , aws_iam_role_policy_attachment.airtelcare-crr , aws_iam_role_policy_attachment.airtelcare-workernode ]
